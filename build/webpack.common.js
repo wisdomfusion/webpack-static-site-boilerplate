@@ -1,8 +1,8 @@
 const webpack = require('webpack');
 const path    = require('path');
 
-const SRC_PATH  = path.resolve(__dirname, 'src');
-const DIST_PATH = path.resolve(__dirname, 'dist');
+const SRC_PATH  = path.resolve(__dirname, '../src');
+const DIST_PATH = path.resolve(__dirname, '../dist');
 
 const MiniCssExtractPlugin    = require('mini-css-extract-plugin');
 const TerserJSPlugin          = require('terser-webpack-plugin');
@@ -11,10 +11,12 @@ const CleanWebpackPlugin      = require('clean-webpack-plugin');
 const HtmlWebpackPlugin       = require('html-webpack-plugin');
 const CopyWebpackPlugin       = require('copy-webpack-plugin');
 
+const { cssPreprocessor } = require('./loader');
+
 module.exports = {
     entry:        {
-        index: './src/page-index/main.js',
-        about: './src/page-about/main.js',
+        index: SRC_PATH + '/page-index/main.js',
+        about: SRC_PATH + '/page-about/main.js',
     },
     output:       {
         filename: '[name].js',
@@ -69,27 +71,29 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(sa|sc|c)ss$/,
+                test: cssPreprocessor.fileRegexp,
                 use:  [
                     {
                         loader: MiniCssExtractPlugin.loader
                     },
                     {
-                        loader: 'css-loader'
+                        loader: 'css-loader',
+                        options: {
+                            modules: false,
+                            sourceMap: true
+                        }
                     },
                     {
                         loader:  'postcss-loader',
                         options: {
-                            plugins: function () {
-                                return [
-                                    require('precss'),
-                                    require('autoprefixer')
-                                ];
-                            }
+                            sourceMap: true
                         }
                     },
                     {
-                        loader: 'sass-loader'
+                        loader: cssPreprocessor.loaderName,
+                        options: {
+                            sourceMap: true
+                        }
                     }
                 ]
             },
@@ -135,12 +139,12 @@ module.exports = {
         new webpack.HashedModuleIdsPlugin(),
 
         new HtmlWebpackPlugin({
-            template: './src/page-index/template.html',
+            template: SRC_PATH+ '/page-index/template.html',
             chunks:   ['vendor', 'index'],
             filename: 'index.html',
         }),
         new HtmlWebpackPlugin({
-            template: './src/page-about/template.html',
+            template: SRC_PATH + '/page-about/template.html',
             chunks:   ['vendor', 'about'],
             filename: 'about.html',
         }),
