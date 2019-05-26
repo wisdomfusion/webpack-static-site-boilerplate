@@ -77,23 +77,13 @@ module.exports = {
                         loader: MiniCssExtractPlugin.loader
                     },
                     {
-                        loader: 'css-loader',
-                        options: {
-                            modules: false,
-                            sourceMap: true
-                        }
+                        loader: 'css-loader'
                     },
                     {
-                        loader:  'postcss-loader',
-                        options: {
-                            sourceMap: true
-                        }
+                        loader:  'postcss-loader'
                     },
                     {
-                        loader: cssPreprocessor.loaderName,
-                        options: {
-                            sourceMap: true
-                        }
+                        loader: cssPreprocessor.loaderName
                     }
                 ]
             },
