@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open --env dev --mode development",
-    "dev": "webpack --env dev --mode development",
-    "prod": "webpack --env prod --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --open --env dev",
+    "watch": "webpack --watch --env dev",
+    "dev": "webpack --env dev",
+    "prod": "webpack --env prod"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "clean-webpack-plugin": "^2.0.2",
     "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",

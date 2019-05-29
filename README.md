@@ -10,6 +10,11 @@ npm run start
 
 starts dev server on `localhost:8080` with livereload, sourcemap
 
+```
+npm run watch
+```
+
+// TODO
 
 ```
 npm run dev
