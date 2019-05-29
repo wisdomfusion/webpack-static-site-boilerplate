@@ -11,10 +11,10 @@ module.exports = env => {
     ];
 
     pageModules.forEach(pageModule => {
-        config.entry[pageModule] = `./src/page-${pageModule}/main.js`;
+        config.entry[pageModule] = `./src/${pageModule}/main.js`;
 
         config.plugins.push(new HtmlPlugin({
-            template: `./src/page-${pageModule}/template.html`,
+            template: `./src/${pageModule}/template.html`,
             filename: `${pageModule}.html`,
             chunks:   ['vendor', 'main', pageModule],
             inject:   'head',
