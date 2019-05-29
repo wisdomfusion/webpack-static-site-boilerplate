@@ -2,7 +2,7 @@
   "name": "webpack-static-site-boilerplate",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "start": "webpack-dev-server --open --env dev",
     "watch": "webpack --watch --env dev",

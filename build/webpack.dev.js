@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path    = require('path');
 
-const SRC_PATH  = path.resolve(__dirname, '../src');
 const DIST_PATH = path.resolve(__dirname, '../dist');
 
 const MiniCssExtractPlugin    = require('mini-css-extract-plugin');
@@ -26,8 +25,9 @@ module.exports = {
     },
 
     entry: {
-        index: SRC_PATH + '/page-index/main.js',
-        about: SRC_PATH + '/page-about/main.js',
+        main:  './src/main.js',
+        // index: './src/page-index/main.js',
+        // about: './src/page-about/main.js',
     },
 
     output: {
@@ -85,18 +85,8 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'css/[name].css',
         }),
-        new webpack.HashedModuleIdsPlugin(),
 
-        new HtmlPlugin({
-            template: SRC_PATH + '/page-index/template.html',
-            chunks:   ['vendor', 'index'],
-            filename: 'index.html',
-        }),
-        new HtmlPlugin({
-            template: SRC_PATH + '/page-about/template.html',
-            chunks:   ['vendor', 'about'],
-            filename: 'about.html',
-        }),
+        new webpack.HashedModuleIdsPlugin(),
     ],
 
     module: {
@@ -154,11 +144,5 @@ module.exports = {
                 ],
             },
         ]
-    },
-
-    resolve: {
-        alias: {
-            '@': SRC_PATH
-        }
     },
 };
