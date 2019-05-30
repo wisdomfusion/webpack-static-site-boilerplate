@@ -14,7 +14,7 @@ npm run start
 
 ### watch build
 
-build with development mode, and watch source files in `./src`, build when files changes:
+builds in development mode, and watch source files in `./src`, build when files changes:
 
 ```
 npm run watch
@@ -22,7 +22,7 @@ npm run watch
 
 ### dev build
 
-build with development mode:
+builds in development mode:
 
 ```
 npm run dev
@@ -30,7 +30,7 @@ npm run dev
 
 ### prod build
 
-build with production mode, optimization, and minimization:
+builds in production mode, with optimization and minimization:
 
 ```
 npm run prod
