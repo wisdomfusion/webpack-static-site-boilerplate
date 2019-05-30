@@ -1,23 +1,29 @@
-// SASS & LESS
+// SASS & LESS, ready to use
 const sass = { fileRegexp: /\.(sa|sc|c)ss$/i, loaderName: 'sass-loader' };
 const less = { fileRegexp: /\.(le|c)ss$/i,    loaderName: 'less-loader' };
 
-// set css preprocessor
+// set css preprocessor here
 const cssPreprocessor = sass;
 
 // add page modules here
 // eg. 'index'
-// meanwhile, add ./src/modules/index/main.js,style.scss,template.html
+//   meanwhile, add ./src/modules/index/main.js,style.scss,template.html
+// eg. 'service'
+//   meanwhile, add ./src/modules/service/*
 const pageModules = [
     'index',
     'about',
 ];
 
+// paths to use
 const path      = require('path');
 const DIST_PATH = path.resolve(__dirname, './dist');
 const SRC_PATH  = path.relative(__dirname, './src');
 
-const webpack                 = require('webpack');
+// webpack itself
+const webpack = require('webpack');
+
+// webpack plugins
 const MiniCssExtractPlugin    = require('mini-css-extract-plugin');
 const TerserJSPlugin          = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -75,7 +81,9 @@ module.exports = (env, argv) => {
                     },
                 }
             },
-            minimizer:   !isDev ? [
+
+            // minify files when prod
+            minimizer: !isDev ? [
                 new TerserJSPlugin(),
                 new OptimizeCSSAssetsPlugin(),
             ] : [],
@@ -84,6 +92,7 @@ module.exports = (env, argv) => {
         plugins: [
             new CleanPlugin(),
 
+            // provide jquery and bootstrap globally
             new webpack.ProvidePlugin({
                 $:               'jquery',
                 'window.$':      'jquery',
@@ -183,7 +192,9 @@ module.exports = (env, argv) => {
             filename: `${pageModule}.html`,
             chunks:   ['vendor', 'main', pageModule],
             inject:   'head',
-            minify:   !isDev ? {
+
+            // minify html if prod
+            minify: !isDev ? {
                 collapseWhitespace:            true,
                 removeComments:                true,
                 removeRedundantAttributes:     true,
