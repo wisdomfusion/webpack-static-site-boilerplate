@@ -4,10 +4,10 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "webpack-dev-server --open --env dev",
-    "watch": "webpack --watch --env dev",
-    "dev": "webpack --env dev",
-    "prod": "webpack --env prod"
+    "start": "webpack-dev-server --mode development --open",
+    "watch": "webpack --mode development --watch",
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production"
   },
   "repository": {
     "type": "git",
