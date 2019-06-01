@@ -1,6 +1,6 @@
 // SASS & LESS, ready to use
 const sass = { fileRegexp: /\.(sa|sc|c)ss$/i, loaderName: 'sass-loader' };
-const less = { fileRegexp: /\.(le|c)ss$/i,    loaderName: 'less-loader' };
+const less = { fileRegexp: /\.(le|c)ss$/i, loaderName: 'less-loader' };
 
 // set css preprocessor here
 const cssPreprocessor = sass;
@@ -27,7 +27,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin    = require('mini-css-extract-plugin');
 const TerserJSPlugin          = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const CleanPlugin             = require('clean-webpack-plugin');
+const { CleanWebpackPlugin }  = require('clean-webpack-plugin');
 const HtmlPlugin              = require('html-webpack-plugin');
 
 module.exports = (env, argv) => {
@@ -90,7 +90,9 @@ module.exports = (env, argv) => {
         },
 
         plugins: [
-            new CleanPlugin(),
+            new webpack.ProgressPlugin(),
+
+            new CleanWebpackPlugin(),
 
             // provide jquery and bootstrap globally
             new webpack.ProvidePlugin({
